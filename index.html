@@ -5,13 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Space Invaders</title>
+    <title>Hostile Aliens</title>
 </head>
 <body>
     <main>
-        <div class="ship" id="mother-ship"></div>
-        <div class="defence-ship"></div>
-        <div class="attack-ship"></div>
+        <h1>Hostile Aliens</h1>
+
+        <button id="fire-btn">Fire</button>
+        <button id="instructions-btn">Instructions</button>
+        <button id="reset-btn">Reset</button>
+
+        <div class="modal" id="instructions-modal">
+            <span class="close-modal">&times;</span>
+            <p>A red pin means one of your selected colours is correct and is in the right position.  <br> <br>  A white pin means one of your colours is correct but is in the wrong position.  <br> <br> No pin means one of the selected colours is not in the combination. </p>
+        </div>
+    
+        <div class="modal" id="winning-modal" >
+            <p id="winning-modal-text">Correct!</p> 
+            <p> You cracked the code!</p>
+            <button class="home-replay-btns" id="play-again-btn">Replay</button>
+            <button class="home-replay-btns" id="home-btn-within-modal">Home</button>
+        </div>
+
+
+        <div class="mothership"></div>
+        <div class="defence"></div>
+        <div class="attack"></div>
+
     </main>
     <script src="main.js"></script>
 </body>
