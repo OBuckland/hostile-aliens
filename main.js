@@ -1,6 +1,8 @@
-const motherShipSection = document.querySelector("#mother-ship");
-const defenceShipSection = document.querySelector(".defence-ship");
-const attackShipSection = document.querySelector(".attack-ship");
+// import {addShipsToArr} from "./functions.js";
+
+// const motherShipSection = document.querySelector("#mother-ship");
+// const defenceShipSection = document.querySelector(".defence-ship");
+// const attackShipSection = document.querySelector(".attack-ship");
 const fireBtn = document.querySelector("#fire-btn")
 const resetBtn = document.querySelector("#reset-btn");
 const instructionsBtn = document.querySelector("#instructions-btn")
@@ -9,6 +11,7 @@ const closeModal = document.querySelector(".close-modal");
 const winningModal = document.querySelector("#winning-modal")
 
 let shipsArr = [];
+let shipsInPlay = [];
 
 class Ship {
     constructor(shipType, shipName, totalPoints, attackDamage) {
@@ -22,22 +25,17 @@ class Ship {
     hitShip(index, shipNodeValue) {
         this.totalPoints -= this.attackDamage;
         if (this.totalPoints < 0) this.totalPoints = 0;
-        shipNodeValue = `<p>${this.shipName} <br> Points: ${this.totalPoints}</p>`;
+        shipNodeValue.innerHTML = `<p>${this.shipName} <br> Points: ${this.totalPoints}</p>`;
         if ((this.totalPoints === 0)) {
             document.querySelector(`#${this.shipType}${index}`).classList.add("ship-destroyed");
-            shipsArr.splice(index);
+            shipsInPlay.splice(index);
         } 
         checkIfGameOver()
     }
 }
-const addShipsToArr = (indexStart, shipType, shipName, totalPoints, attackDamage, numberOfShips) => {
-    for (let index = indexStart; index < (indexStart + numberOfShips); index++) {
-        shipsArr.push(new Ship(shipType, shipName, totalPoints, attackDamage));
-    }    
-}
 
-const shipNodeValue = () => {
-    document.querySelector(`#${this.shipType}${index}`).innerHTML 
+const shipNodeValue = (index) => {
+    return document.querySelector(`#${shipsInPlay[index].shipType}${index}`); 
 }
 
 const checkIfGameOver = () => {
@@ -51,12 +49,13 @@ const checkIfGameOver = () => {
 // NEED TO GET THIS WORKING
 const gameOver = () => winningModal.style.display = "block";
 
-// When I put EXPORT before this, this game breaks
-//  const addShipsToArr = (indexStart, shipType, shipName, totalPoints, attackDamage, numberOfShips) => {
-//     for (let index = indexStart; index < (indexStart + numberOfShips); index++) {
-//         shipsArr.push(new Ship(shipType, shipName, totalPoints, attackDamage));
-//     }    
-// }
+
+const addShipsToArr = (indexStart, shipType, shipName, totalPoints, attackDamage, numberOfShips) => {
+    for (let index = indexStart; index < (indexStart + numberOfShips); index++) {
+        shipsArr.push(new Ship(shipType, shipName, totalPoints, attackDamage));
+        shipsInPlay = [...shipsArr];
+    }    
+}
 
 // the DOM element of building the ships 
 const createShipHTML = () => {
@@ -80,12 +79,12 @@ console.log(shipsArr)
 
 
 const getRandomIndex = () => {    
-    const randomIndex = Math.floor(Math.random()* shipsArr.length);    
+    const randomIndex = Math.floor(Math.random()* shipsInPlay.length);    
     return randomIndex; }
 
 fireBtn.addEventListener("click", () => {
     let hitShipIndex = getRandomIndex();
-    shipsArr[hitShipIndex].hitShip(hitShipIndex);
+    shipsInPlay[hitShipIndex].hitShip(hitShipIndex, shipNodeValue(hitShipIndex));
     // checkIfGameOver();
 
 });
@@ -93,7 +92,8 @@ fireBtn.addEventListener("click", () => {
 // const checkIfGameOver
 
 const resetGame = () => {
-    shipsArr = []
+    shipsArr = [];
+    shipsInPlay = [];
     document.querySelector(".mothership").innerHTML = "";
     document.querySelector(".defence").innerHTML = "";
     document.querySelector(".attack").innerHTML = "";
