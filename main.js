@@ -18,16 +18,26 @@ class Ship {
         this.shipName = shipName;
     }
 
-    hitShip(index) {
+    // when ship is hit 
+    hitShip(index, shipNodeValue) {
         this.totalPoints -= this.attackDamage;
         if (this.totalPoints < 0) this.totalPoints = 0;
-        document.querySelector(`#${this.shipType}${index}`).innerHTML = `<p>${this.shipName} <br> Points: ${this.totalPoints}</p>`;
+        shipNodeValue = `<p>${this.shipName} <br> Points: ${this.totalPoints}</p>`;
         if ((this.totalPoints === 0)) {
             document.querySelector(`#${this.shipType}${index}`).classList.add("ship-destroyed");
             shipsArr.splice(index);
         } 
         checkIfGameOver()
     }
+}
+const addShipsToArr = (indexStart, shipType, shipName, totalPoints, attackDamage, numberOfShips) => {
+    for (let index = indexStart; index < (indexStart + numberOfShips); index++) {
+        shipsArr.push(new Ship(shipType, shipName, totalPoints, attackDamage));
+    }    
+}
+
+const shipNodeValue = () => {
+    document.querySelector(`#${this.shipType}${index}`).innerHTML 
 }
 
 const checkIfGameOver = () => {
@@ -37,15 +47,18 @@ const checkIfGameOver = () => {
     } 
 }
 
+// when game over show winning modal with option to replay game
+// NEED TO GET THIS WORKING
 const gameOver = () => winningModal.style.display = "block";
 
-// When I put export before this, this game breaks
-  const addShipsToArr = (indexStart, shipType, shipName, totalPoints, attackDamage, numberOfShips) => {
-    for (let index = indexStart; index < (indexStart + numberOfShips); index++) {
-        shipsArr.push(new Ship(shipType, shipName, totalPoints, attackDamage));
-    }    
-}
+// When I put EXPORT before this, this game breaks
+//  const addShipsToArr = (indexStart, shipType, shipName, totalPoints, attackDamage, numberOfShips) => {
+//     for (let index = indexStart; index < (indexStart + numberOfShips); index++) {
+//         shipsArr.push(new Ship(shipType, shipName, totalPoints, attackDamage));
+//     }    
+// }
 
+// the DOM element of building the ships 
 const createShipHTML = () => {
     shipsArr.forEach(ship => {
         document.querySelector(`.${ship.shipType}`).innerHTML += `<div class="ship" id="${ship.shipType}${shipsArr.indexOf(ship)}"><p>${ship.shipName} <br> Points:${ship.totalPoints}</p></div>`;
@@ -61,6 +74,7 @@ const buildShips = () => {
 }
 
 buildShips();
+// createShipHTML();
 
 console.log(shipsArr)
 
