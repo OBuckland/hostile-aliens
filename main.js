@@ -4,13 +4,14 @@ const attackShipSection = document.querySelector(".attack-ship");
 const fireBtn = document.querySelector("#fire-btn")
 const resetBtn = document.querySelector("#reset-btn");
 const instructionsBtn = document.querySelector("#instructions-btn")
+const instructionsModal = document.querySelector("#instructions-modal");
+const closeModal = document.querySelector(".close-modal");
+const winningModal = document.querySelector("#winning-modal")
 
 let shipsArr = [];
-let randomShip = "";
-let shipsInPlayArr = [];
 
 class Ship {
-    constructor(totalPoints, attackDamage, shipType, shipName) {
+    constructor(shipType, shipName, totalPoints, attackDamage) {
         this.totalPoints = totalPoints;
         this.attackDamage = attackDamage;
         this.shipType = shipType;
@@ -20,69 +21,72 @@ class Ship {
     hitShip(index) {
         this.totalPoints -= this.attackDamage;
         if (this.totalPoints < 0) this.totalPoints = 0;
-        document.querySelector(`${this.shipType}${index}`).innerHTML = `<h5>${this.shipName}</h5> <p>Points: ${this.totalPoints}</p>`;
+        document.querySelector(`#${this.shipType}${index}`).innerHTML = `<p>${this.shipName} <br> Points: ${this.totalPoints}</p>`;
         if ((this.totalPoints === 0)) {
-            // document.querySelector(`#${this.shipType}${index}`).classList.add("ship--destroyed");
-            // ADD CLASS HERE
             document.querySelector(`#${this.shipType}${index}`).classList.add("ship-destroyed");
-            shipsInPlay.splice(index);
+            shipsArr.splice(index);
         } 
+        checkIfGameOver()
     }
-
-    // buildShip(numberOfShips){
-    //     for (let index = 0; index < numberOfShips; index++) {
-    //         shipArr.push(`${this.shipType}${index}`);
-    //         document.querySelector(`.${this.shipType}`).innerHTML += `<p class="ship" id="${this.shipType}${index}">${this.shipName} ${this.totalPoints} Points</p>`
-    //     };
-    // }
-    
-
 }
 
-const buildShips = (indexStart, shipType, shipName, totalPoints, attackDamage, numberOfShips) => {
+const checkIfGameOver = () => {
+    if (shipsArr[0].totalPoints === 0 || shipsArr.every(ship => ship.totalPoints === 0)){
+        console.log("gameOVer")
+        gameOver()
+    } 
+}
+
+const gameOver = () => winningModal.style.display = "block";
+
+// When I put export before this, this game breaks
+  const addShipsToArr = (indexStart, shipType, shipName, totalPoints, attackDamage, numberOfShips) => {
     for (let index = indexStart; index < (indexStart + numberOfShips); index++) {
         shipsArr.push(new Ship(shipType, shipName, totalPoints, attackDamage));
-        document.querySelector(`.${shipType}`).innerHTML += `<div class=“ship” id=“${shipType}${index}“><h5>${shipName}</h5> 
-        <p>Points: ${totalPoints}</p></div>`;
     }    
 }
 
-
-const startGame = () => {
-    buildShips(0, "mothership", "Mother Ship", 100, 50, 1);
-    buildShips(1, "defence", "Defence Ship", 80, 50, 5);
-    buildShips(6, "attack", "Attack Ship", 45, 50, 8);
-    shipsInPlay = [...shipsArr];
+const createShipHTML = () => {
+    shipsArr.forEach(ship => {
+        document.querySelector(`.${ship.shipType}`).innerHTML += `<div class="ship" id="${ship.shipType}${shipsArr.indexOf(ship)}"><p>${ship.shipName} <br> Points:${ship.totalPoints}</p></div>`;
+    });
 }
 
-startGame();
 
-// const motherShip = new Ship (100, 9, "mothership", "Mother Ship");
-// const defenceShip = new Ship (80, 10, "defence", "Defence Ship");
-// const attackShip = new Ship (45, 12, "attack", "Attack Ship");
+const buildShips = () => {
+    addShipsToArr(0, "mothership", "Mother Ship", 100, 50, 1);
+    addShipsToArr(1, "defence", "Defence Ship", 80, 50, 5);
+    addShipsToArr(6, "attack", "Attack Ship", 45, 52, 8);
+    createShipHTML();
+}
 
-// motherShip.buildShip(1);
-// defenceShip.buildShip(5);
-// attackShip.buildShip(8);
+buildShips();
+
+console.log(shipsArr)
 
 
-
-// get random index - then to into ships array
-getRandomShip = () => {
-    const randomIndex = Math.floor(Math.random() * shipsArr.length);
-    const randomShip = shipsArr[randomIndex];
-    return randomShip;
-     };
+const getRandomIndex = () => {    
+    const randomIndex = Math.floor(Math.random()* shipsArr.length);    
+    return randomIndex; }
 
 fireBtn.addEventListener("click", () => {
-    let hitShipIndex = getRandomShip();
-    shipsInPlay[hitShipIndex].hitShip(hitShipIndex);
-    // checkPoints();
+    let hitShipIndex = getRandomIndex();
+    shipsArr[hitShipIndex].hitShip(hitShipIndex);
+    // checkIfGameOver();
 
 });
 
-const instructionsModal = document.querySelector("#instructions-modal");
-const closeModal = document.querySelector(".close-modal")
+// const checkIfGameOver
+
+const resetGame = () => {
+    shipsArr = []
+    document.querySelector(".mothership").innerHTML = "";
+    document.querySelector(".defence").innerHTML = "";
+    document.querySelector(".attack").innerHTML = "";
+    buildShips()
+}
+
+resetBtn.addEventListener("click", resetGame)
 
 instructionsBtn.addEventListener("click", () => {
     instructionsModal.style.display = "block";
@@ -91,7 +95,30 @@ instructionsBtn.addEventListener("click", () => {
 closeModal.addEventListener("click", () => {
     instructionsModal.style.display = "none";
   }) 
-  
+
+
+
+  // get random index - then to into ships array
+// const getRandomShip = () => {
+//     const randomIndex = Math.floor(Math.random() * shipsArr.length);
+//     const randomShip = shipsArr[randomIndex];
+//     return randomShip;
+//      };
+
+
+// const buildShips = (indexStart, shipType, shipName, totalPoints, attackDamage, numberOfShips) => {
+//     for (let index = indexStart; index < (indexStart + numberOfShips); index++) {
+//         shipsArr.push(new Ship(shipType, shipName, totalPoints, attackDamage));
+//         document.querySelector(`.${shipType}`).innerHTML += `<div class="ship" id="${shipType}${index}"><p>${shipName} <br> Points:${totalPoints}</p></div>`;
+//     }    
+// }
+
+// const startGame = () => {
+//     buildShips(0, "mothership", "Mother Ship", 100, 50, 1);
+//     buildShips(1, "defence", "Defence Ship", 80, 50, 5);
+//     buildShips(6, "attack", "Attack Ship", 45, 50, 8);
+//     // shipsInPlay = [...shipsArr];
+// }
 
 
     // getShip = () => {
