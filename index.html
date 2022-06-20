@@ -5,26 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/fc310e50d7.js" crossorigin="anonymous"></script>
     <title>Hostile Aliens</title>
 </head>
 <body>
     <main>
+        <nav class="nav-bar">
+            <button id="instructions-btn"><i class="fa fa-info nav-btns"></i></button>
+            <button id="reset-btn"><i class="fa fa-rotate-left nav-btns"></i></button>
+        </nav>
+
         <h1>Hostile Aliens</h1>
 
-        <button id="fire-btn">Fire</button>
-        <button id="instructions-btn">Instructions</button>
-        <button id="reset-btn">Reset</button>
-
-        <div class="modal" id="instructions-modal">
-            <span class="close-modal">&times;</span>
-            <p>A red pin means one of your selected colours is correct and is in the right position.  <br> <br>  A white pin means one of your colours is correct but is in the wrong position.  <br> <br> No pin means one of the selected colours is not in the combination. </p>
+        <div class="modal-container" id="instructions-modal">
+            <div class="modal-content" >
+                <span class="close-modal">&times;</span>
+                <p>How to Play.  <br> <br>  Use the fire button to hit the ships. To win you must either destroy all ships or if you hit the Mother Ship you win instantly. <br> <br> No pin means one of the selected colours is not in the combination. </p>
+            </div>
         </div>
-    
-        <div class="modal" id="winning-modal" >
-            <p id="winning-modal-text">Correct!</p> 
-            <p> You cracked the code!</p>
-            <button class="home-replay-btns" id="play-again-btn">Replay</button>
-            <button class="home-replay-btns" id="home-btn-within-modal">Home</button>
+        
+        <div class="modal-container"  id="winning-modal">
+            <div class="modal-content">
+                <p>YOU WIN!</p>
+                <button id="play-again-btn">Replay</button>
+            </div>
         </div>
 
 
@@ -32,6 +36,7 @@
         <div class="defence"></div>
         <div class="attack"></div>
 
+        <button id="fire-btn">Fire</button>
     </main>
     <script src="main.js"></script>
 </body>
