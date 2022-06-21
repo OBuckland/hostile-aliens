@@ -87,7 +87,6 @@ const resetGame = () => {
     winningModal.style.display = "none";
 }
 
-// Buttons and event listeners
 
 fireBtn.addEventListener("click", () => {
     let hitShipIndex = getRandomIndex();
