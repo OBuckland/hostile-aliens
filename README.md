@@ -19,7 +19,7 @@ This game is loosely based on the Space Invaders arcade game. The game has been 
 *   JavaScript
 *   HTML
 *   CSS
-*   GitHub
+*   Git & GitHub
 
 ### **Skills**
 *   OOP
@@ -42,3 +42,5 @@ This game is loosely based on the Space Invaders arcade game. The game has been 
 
 ### **Links**
 [GitHub repository](https://github.com/OBuckland/hostile-aliens "Link to GitHub")
+
+[Play Hostile Aliens](obuckland.github.io/hostile-aliens/ "Link to Game")
