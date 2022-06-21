@@ -1,14 +1,12 @@
 // import {addShipsToArr} from "./functions.js";
 
-// const motherShipSection = document.querySelector("#mother-ship");
-// const defenceShipSection = document.querySelector(".defence-ship");
-// const attackShipSection = document.querySelector(".attack-ship");
 const fireBtn = document.querySelector("#fire-btn")
 const resetBtn = document.querySelector("#reset-btn");
 const instructionsBtn = document.querySelector("#instructions-btn")
 const instructionsModal = document.querySelector("#instructions-modal");
 const closeModal = document.querySelector(".close-modal");
 const winningModal = document.querySelector("#winning-modal")
+const winningModalReplayBtn = document.querySelector("#play-again-btn")
 
 let shipsArr = [];
 let shipsInPlay = [];
@@ -38,18 +36,7 @@ const shipNodeValue = (index) => {
     return document.querySelector(`#${shipsInPlay[index].shipType}${index}`); 
 }
 
-const checkIfGameOver = () => {
-    if (shipsArr[0].totalPoints === 0 || shipsArr.every(ship => ship.totalPoints === 0)){
-        console.log("gameOVer")
-        gameOver()
-    } 
-}
-
-// when game over show winning modal with option to replay game
-// NEED TO GET THIS WORKING
-const gameOver = () => winningModal.style.display = "block";
-
-
+// almost pure function for buidling shipis - the Ship class uses DOM 
 const addShipsToArr = (indexStart, shipType, shipName, totalPoints, attackDamage, numberOfShips) => {
     for (let index = indexStart; index < (indexStart + numberOfShips); index++) {
         shipsArr.push(new Ship(shipType, shipName, totalPoints, attackDamage));
@@ -64,32 +51,31 @@ const createShipHTML = () => {
     });
 }
 
-
 const buildShips = () => {
-    addShipsToArr(0, "mothership", "Mother Ship", 100, 50, 1);
-    addShipsToArr(1, "defence", "Defence Ship", 80, 50, 5);
-    addShipsToArr(6, "attack", "Attack Ship", 45, 52, 8);
+    addShipsToArr(0, "mothership", "Mother Ship", 100, 9, 1);
+    addShipsToArr(1, "defence", "Defence Ship", 80, 10, 5);
+    addShipsToArr(6, "attack", "Attack Ship", 45, 12, 8);
     createShipHTML();
 }
 
 buildShips();
 // createShipHTML();
 
-console.log(shipsArr)
-
-
 const getRandomIndex = () => {    
     const randomIndex = Math.floor(Math.random()* shipsInPlay.length);    
     return randomIndex; }
 
-fireBtn.addEventListener("click", () => {
-    let hitShipIndex = getRandomIndex();
-    shipsInPlay[hitShipIndex].hitShip(hitShipIndex, shipNodeValue(hitShipIndex));
-    // checkIfGameOver();
 
-});
+const checkIfGameOver = () => {
+    if (shipsArr[0].totalPoints === 0 || shipsArr.every(ship => ship.totalPoints === 0)){
+        console.log("gameOVer")
+        gameOver()
+    } 
+}
 
-// const checkIfGameOver
+// when game over show winning modal with option to replay game
+const gameOver = () => winningModal.style.display = "block";
+
 
 const resetGame = () => {
     shipsArr = [];
@@ -98,7 +84,17 @@ const resetGame = () => {
     document.querySelector(".defence").innerHTML = "";
     document.querySelector(".attack").innerHTML = "";
     buildShips()
+    winningModal.style.display = "none";
 }
+
+// Buttons and event listeners
+
+fireBtn.addEventListener("click", () => {
+    let hitShipIndex = getRandomIndex();
+    shipsInPlay[hitShipIndex].hitShip(hitShipIndex, shipNodeValue(hitShipIndex));
+    // checkIfGameOver();
+
+});
 
 resetBtn.addEventListener("click", resetGame)
 
@@ -110,7 +106,7 @@ closeModal.addEventListener("click", () => {
     instructionsModal.style.display = "none";
   }) 
 
-
+winningModalReplayBtn.addEventListener("click", resetGame)
 
   // get random index - then to into ships array
 // const getRandomShip = () => {
