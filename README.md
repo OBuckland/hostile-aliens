@@ -2,7 +2,7 @@
 ***
 
 ### **Description**
-This game is loosely based on the Space Invaders arcade game. The game has been built using JavaScript, HTML and CSS. The player presses the fire button to randomly hit one of the ships. There are 3 types of ships: mothership, defence ship and attack ship. The game is won when either the mothership is destroyed or all ships reach zero points.
+This game is loosely based on the Space Invaders arcade game. The game has been built using an OOP approach and unit tested using Jest. The player presses the fire button to randomly hit one of the ships. There are 3 types of ships: mothership, defence ship and attack ship. The game is won when either the mothership is destroyed or all ships reach zero points.
 
 
 ---
@@ -20,6 +20,7 @@ This game is loosely based on the Space Invaders arcade game. The game has been 
 *   HTML
 *   CSS
 *   Git & GitHub
+*   Jest
 
 ### **Skills**
 *   OOP
