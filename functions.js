@@ -1,7 +1,16 @@
-// export const addShipsToArr = (indexStart, shipType, shipName, totalPoints, attackDamage, numberOfShips) => {
-//     for (let index = indexStart; index < (indexStart + numberOfShips); index++) {
-//         shipsArr.push(new Ship(shipType, shipName, totalPoints, attackDamage));
-//     }    
-// }
+export class Ship {
+    constructor(shipType, shipName, totalPoints, attackDamage) {
+        this.totalPoints = totalPoints;
+        this.attackDamage = attackDamage;
+        this.shipType = shipType;
+        this.shipName = shipName;
+    }
 
-//MOVING BRACH
+    // when ship is hit 
+    hitShip() {
+        this.totalPoints -= this.attackDamage;
+        if ((this.totalPoints <= 0)) {
+            this.totalPoints = 0;
+        } 
+    }
+}

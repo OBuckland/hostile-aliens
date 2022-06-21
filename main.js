@@ -1,4 +1,5 @@
 // import {addShipsToArr} from "./functions.js";
+import {Ship} from "./functions.js"
 
 const fireBtn = document.querySelector("#fire-btn")
 const resetBtn = document.querySelector("#reset-btn");
@@ -11,29 +12,13 @@ const winningModalReplayBtn = document.querySelector("#play-again-btn")
 let shipsArr = [];
 let shipsInPlay = [];
 
-class Ship {
-    constructor(shipType, shipName, totalPoints, attackDamage) {
-        this.totalPoints = totalPoints;
-        this.attackDamage = attackDamage;
-        this.shipType = shipType;
-        this.shipName = shipName;
-    }
-
-    // when ship is hit 
-    hitShip(index, shipNodeValue) {
-        this.totalPoints -= this.attackDamage;
-        if (this.totalPoints < 0) this.totalPoints = 0;
-        shipNodeValue.innerHTML = `<p>${this.shipName} <br> Points: ${this.totalPoints}</p>`;
-        if ((this.totalPoints === 0)) {
-            document.querySelector(`#${this.shipType}${index}`).classList.add("ship-destroyed");
-            shipsInPlay.splice(index);
-        } 
-        checkIfGameOver()
-    }
+const displayNewPoints = (index, currentShip) => {
+    document.querySelector(`#${currentShip.shipType}${index}`).innerHTML = `<p>${currentShip.shipName} <br> Points: ${currentShip.totalPoints}</p>`
 }
 
-const shipNodeValue = (index) => {
-    return document.querySelector(`#${shipsInPlay[index].shipType}${index}`); 
+const shipDestroyed = (index, currentShip) => {
+    document.querySelector(`#${currentShip.shipType}${index}`).classList.add("ship-destroyed");
+    shipsInPlay.splice(index);
 }
 
 // almost pure function for buidling shipis - the Ship class uses DOM 
@@ -65,6 +50,7 @@ const getRandomIndex = () => {
     const randomIndex = Math.floor(Math.random()* shipsInPlay.length);    
     return randomIndex; }
 
+console.log(shipsInPlay)
 
 const checkIfGameOver = () => {
     if (shipsArr[0].totalPoints === 0 || shipsArr.every(ship => ship.totalPoints === 0)){
@@ -76,7 +62,6 @@ const checkIfGameOver = () => {
 // when game over show winning modal with option to replay game
 const gameOver = () => winningModal.style.display = "block";
 
-
 const resetGame = () => {
     shipsArr = [];
     shipsInPlay = [];
@@ -87,13 +72,19 @@ const resetGame = () => {
     winningModal.style.display = "none";
 }
 
-
-fireBtn.addEventListener("click", () => {
+// Buttons and event listeners
+const fireAtShip = () => {
     let hitShipIndex = getRandomIndex();
-    shipsInPlay[hitShipIndex].hitShip(hitShipIndex, shipNodeValue(hitShipIndex));
-    // checkIfGameOver();
+    let currentShip = shipsInPlay[hitShipIndex]
+    currentShip.hitShip(hitShipIndex);
+    if (currentShip.totalPoints === 0){
+        shipDestroyed(hitShipIndex, currentShip)
+    }
+    checkIfGameOver();
+    displayNewPoints(hitShipIndex, currentShip);
+}
 
-});
+fireBtn.addEventListener("click", fireAtShip);
 
 resetBtn.addEventListener("click", resetGame)
 
