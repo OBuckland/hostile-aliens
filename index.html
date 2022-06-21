@@ -11,8 +11,8 @@
 <body>
     <main>
         <nav class="nav-bar">
-            <button id="instructions-btn"><i class="fa fa-info nav-btns"></i></button>
-            <button id="reset-btn"><i class="fa fa-rotate-left nav-btns"></i></button>
+            <button id="instructions-btn"><i class="fa fa-info nav-btns btns"></i></button>
+            <button id="reset-btn"><i class="fa fa-rotate-left nav-btns btns"></i></button>
         </nav>
 
         <h1>Hostile Aliens</h1>
@@ -20,14 +20,14 @@
         <div class="modal-container" id="instructions-modal">
             <div class="modal-content" >
                 <span class="close-modal">&times;</span>
-                <p>How to Play.  <br> <br>  Use the fire button to hit the ships. To win you must either destroy all ships or if you hit the Mother Ship you win instantly. <br> <br> No pin means one of the selected colours is not in the combination. </p>
+                <h3>How to Play</h3> <br> <p>Use the fire button to hit the ships. <br> <br> To win you must either destroy all ships or destroy the Mother Ship. <br> <br> The Mothership will be dealt 9 points when hit, the defence ships 10 and attack ships 12. </p>
             </div>
         </div>
         
         <div class="modal-container"  id="winning-modal">
             <div class="modal-content">
-                <p>YOU WIN!</p>
-                <button id="play-again-btn">Replay</button>
+                <h3>Congratulations!</h3><br><p>You destroyed the alien fleet!</p>
+                <button id="play-again-btn">Play Again</button>
             </div>
         </div>
 
