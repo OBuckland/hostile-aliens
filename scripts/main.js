@@ -1,4 +1,3 @@
-// import {addShipsToArr} from "./functions.js";
 import {Ship} from "./functions.js"
 
 const fireBtn = document.querySelector("#fire-btn")
@@ -21,7 +20,6 @@ const shipDestroyed = (index, currentShip) => {
     shipsInPlay.splice(index);
 }
 
-// almost pure function for buidling shipis - the Ship class uses DOM 
 const addShipsToArr = (indexStart, shipType, shipName, totalPoints, attackDamage, numberOfShips) => {
     for (let index = indexStart; index < (indexStart + numberOfShips); index++) {
         shipsArr.push(new Ship(shipType, shipName, totalPoints, attackDamage));
@@ -44,7 +42,6 @@ const buildShips = () => {
 }
 
 buildShips();
-// createShipHTML();
 
 const getRandomIndex = () => {    
     const randomIndex = Math.floor(Math.random()* shipsInPlay.length);    
@@ -76,7 +73,7 @@ const resetGame = () => {
 const fireAtShip = () => {
     let hitShipIndex = getRandomIndex();
     let currentShip = shipsInPlay[hitShipIndex]
-    currentShip.hitShip(hitShipIndex);
+    currentShip.hitShip();
     if (currentShip.totalPoints === 0){
         shipDestroyed(hitShipIndex, currentShip)
     }
