@@ -10,8 +10,8 @@ This game is loosely based on the Space Invaders arcade game. The game has been 
 |---|
 | Technology  |
 | Skills |
-| Images |
 | Functionality |
+| Images |
 | Links |
 
 
@@ -25,12 +25,6 @@ This game is loosely based on the Space Invaders arcade game. The game has been 
 *   OOP
 *   Unit testing
 
-### **Images**
-<img src="/images/home-screen-screenshot.png" alt="Image of game home page" width="300px">
-<img src="/images/ships-hit-screenshot.png" alt="Image of game when ships hit" width="300px">
-<img src="/how-to-play-screenshot.png" alt="Image of how to play modal" width="300px">
-<img src="/images/winning-modal-screenshot.png" alt="Image of winning modal" width="300px">
-
 ### **Functionality**
 * There is 1 mothership, 5 defence ships and 8 attack ships. Each ship starts with a different amount of points and is dealt damage based on ship type.
 * When the player presses the fire button a random ship is hit.
@@ -39,6 +33,12 @@ This game is loosely based on the Space Invaders arcade game. The game has been 
 * A replay icon is on the main page to reset the game.
 * When the player wins a modal pops and gives the player the option of playing again. 
 
+
+### **Images**
+<img src="/images/home-screen-screenshot.png" alt="Image of game home page" width="500px">
+<img src="/images/ships-hit-screenshot.png" alt="Image of game when ships hit" width="500px">
+<img src="/images/how-to-play-screenshot.png" alt="Image of how to play modal" width="500px">
+<img src="/images/winning-modal-screenshot.png" alt="Image of winning modal" width="500px">
 
 ### **Links**
 [GitHub repository](https://github.com/OBuckland/hostile-aliens "Link to GitHub")
