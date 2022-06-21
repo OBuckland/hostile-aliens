@@ -35,10 +35,10 @@ This game is loosely based on the Space Invaders arcade game. The game has been 
 
 
 ### **Images**
-<img src="/images/home-screen-screenshot.png" alt="Image of game home page" width="500px">
-<img src="/images/ships-hit-screenshot.png" alt="Image of game when ships hit" width="500px">
-<img src="/images/how-to-play-screenshot.png" alt="Image of how to play modal" width="500px">
-<img src="/images/winning-modal-screenshot.png" alt="Image of winning modal" width="500px">
+<img src="/images/home-screen-screenshot.png" alt="Image of game home page" width="600px">
+<img src="/images/ships-hit-screenshot.png" alt="Image of game when ships hit" width="600px">
+<img src="/images/how-to-play-screenshot.png" alt="Image of how to play modal" width="600px">
+<img src="/images/winning-modal-screenshot.png" alt="Image of winning modal" width="600px">
 
 ### **Links**
 [GitHub repository](https://github.com/OBuckland/hostile-aliens "Link to GitHub")
