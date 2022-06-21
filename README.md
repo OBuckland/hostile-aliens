@@ -34,7 +34,7 @@ This game is loosely based on the Space Invaders arcade game. The game has been 
 ### **Functionality**
 * There is 1 mothership, 5 defence ships and 8 attack ships. Each ship starts with a different amount of points and is dealt damage based on ship type.
 * When the player presses the fire button a random ship is hit.
-* Once a ship is destroed the ship will change colour and the points will go down to 0. Once destoyed a ship cannot be fired at again.
+* Once a ship is destroyed the ship will change colour and the points will go down to 0. Once destroyed a ship cannot be fired at again.
 * There is an information modal showing how to play instructions.
 * A replay icon is on the main page to reset the game.
 * When the player wins a modal pops and gives the player the option of playing again. 
