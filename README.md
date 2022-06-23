@@ -12,6 +12,7 @@ This game is loosely based on the Space Invaders arcade game. The game has been 
 | Skills |
 | Functionality |
 | Images |
+| Testing |
 | Links |
 
 
@@ -40,6 +41,9 @@ This game is loosely based on the Space Invaders arcade game. The game has been 
 <img src="/images/ships-hit-screenshot.png" alt="Image of game when ships hit" width="600px">
 <img src="/images/how-to-play-screenshot.png" alt="Image of how to play modal" width="600px">
 <img src="/images/winning-modal-screenshot.png" alt="Image of winning modal" width="600px">
+
+### **Testing**
+The game was tested using Jest. The tests check that for each ship type, the ships are build correctly, assigned the correct names and values, and that they loose the correct number of points when hit. The method to select a random ship has also been tested.  
 
 ### **Links**
 [GitHub repository](https://github.com/OBuckland/hostile-aliens "Link to GitHub")
