@@ -1,4 +1,4 @@
-import {Ship} from "./functions.js"
+import {Ship, getRandomIndex} from "./functions.js"
 
 const fireBtn = document.querySelector("#fire-btn")
 const resetBtn = document.querySelector("#reset-btn");
@@ -43,12 +43,6 @@ const buildShips = () => {
 
 buildShips();
 
-const getRandomIndex = () => {    
-    const randomIndex = Math.floor(Math.random()* shipsInPlay.length);    
-    return randomIndex; }
-
-console.log(shipsInPlay)
-
 const checkIfGameOver = () => {
     if (shipsArr[0].totalPoints === 0 || shipsArr.every(ship => ship.totalPoints === 0)){
         console.log("gameOVer")
@@ -71,7 +65,7 @@ const resetGame = () => {
 
 // Buttons and event listeners
 const fireAtShip = () => {
-    let hitShipIndex = getRandomIndex();
+    let hitShipIndex = getRandomIndex(shipsInPlay);
     let currentShip = shipsInPlay[hitShipIndex]
     currentShip.hitShip();
     if (currentShip.totalPoints === 0){
