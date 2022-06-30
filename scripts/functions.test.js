@@ -20,7 +20,7 @@ it ("Should create a new Attack Ship, with the correct parameters", () => {
 
 // Test ships loose correct number of points
 it ("Should reduce total points by correct amount for Mother Ship", () => {
-   mothership.hitShip()
+    mothership.hitShip()
     expect(mothership.totalPoints).toBe(91);
 })
 
